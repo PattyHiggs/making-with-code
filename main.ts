@@ -49,7 +49,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (enemy, player2)
         game.gameOver(false)
     }
 })
-function STARTGAME() {
+function STARTGAME () {
     info.setScore(0)
     info.setLife(3)
     controller.moveSprite(mySprite, 100, 100)
@@ -205,6 +205,12 @@ mySprite = sprites.create(img`
     . . . c b d d d d 5 5 b b . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
+effects.starField.startScreenEffect()
+game.onUpdate(function () {
+    if (info.score() >= 2) {
+        game.splash("AIRSTRIKE INBOUND")
+    }
+})
 forever(function () {
     if (level != "") {
         pause(spawn)
